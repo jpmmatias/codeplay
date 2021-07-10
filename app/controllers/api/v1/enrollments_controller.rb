@@ -3,7 +3,9 @@ module Api
     class EnrollmentsController < ApiController
       def index
         @enrollments = Enrollment.all
-        render json: @enrollments, status: :success
+        render json: @enrollments
+        .as_json(
+                 include: %i[student course])
       end
     end
   end
